@@ -29,8 +29,7 @@ if (interactive()) {
                 output$contents <- renderTable({
                         
                         
-                        # date pattern for use elsewhere
-                        date_pattern <- "\\d{1,2}/\\d{2}/\\d{4}"
+
                         
                         # input$file1 will be NULL initially. After the user selects
                         # and uploads a file, it will be a data frame with 'name',
@@ -46,6 +45,7 @@ if (interactive()) {
                         temp2 <- unlist(strsplit(temp1,"\n"))  # by line
                         
                         date_pattern <- "\\d{1,2}/\\d{2}/\\d{4}"
+                        
                         # identify end of pages:
                         end_pages <- which(str_detect(temp2, "Page")) - 1
                         
@@ -104,7 +104,7 @@ if (interactive()) {
                         tab_pdf <- data.frame(tab_pdf[date_places,], stringsAsFactors = FALSE)
                         
                         # format variables:
-                        tab_pdf$date <- as.Date(tab_pdf$date, format = "%d/%m/%Y")
+                        tab_pdf$date <- as.character(as.Date(tab_pdf$date, format = "%d/%m/%Y"))
                         
                         # for numbers, first need to get rid of white space btw thousands
                         tab_pdf$charge <- str_replace_all(tab_pdf$charge, ' ','')
