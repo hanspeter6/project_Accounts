@@ -15,9 +15,9 @@ if (interactive()) {
                                                   "text/csv",
                                                   "text/comma-separated-values,text/plain",
                                                   ".csv",
-                                                  ".pdf")
-                                )
-                                # checkboxInput("header", "Header", TRUE)
+                                                  ".pdf")),
+                                # Button
+                                downloadButton("downloadData", "Download")
                         ),
                         mainPanel(
                                 tableOutput("contents")
