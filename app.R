@@ -1,3 +1,9 @@
+# libraries
+library(tm)
+library(pdftools)
+library(stringr)
+library(dplyr)
+
 ## Only run examples in interactive R sessions
 if (interactive()) {
         
@@ -21,6 +27,11 @@ if (interactive()) {
         
         server <- function(input, output) {
                 output$contents <- renderText({
+                        
+                        
+                        # date pattern for use elsewhere
+                        date_pattern <- "\\d{1,2}/\\d{2}/\\d{4}"
+                        
                         # input$file1 will be NULL initially. After the user selects
                         # and uploads a file, it will be a data frame with 'name',
                         # 'size', 'type', and 'datapath' columns. The 'datapath'
