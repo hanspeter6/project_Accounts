@@ -29,7 +29,7 @@ if (interactive()) {
                 output$contents <- renderTable({
                         
                         
-
+                        
                         
                         # input$file1 will be NULL initially. After the user selects
                         # and uploads a file, it will be a data frame with 'name',
@@ -123,7 +123,16 @@ if (interactive()) {
                         
                         return(tab_pdf)
                         # read.csv(inFile$datapath)
+                        
                 })
+                
+                # Downloadable csv of selected dataset ----
+                output$downloadData <- downloadHandler(
+                        filename = "test.csv",
+                        content = function(file) {
+                                write.csv(tab_pdf, file, row.names = FALSE)
+                        }
+                )
         }
         
         shinyApp(ui, server)
